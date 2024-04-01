@@ -1,0 +1,14 @@
+node_modules/
+.env
+build/
+public/
+logs/
+coverage/
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Optional debug/package files
+npm-debug.log
+yarn.lock
