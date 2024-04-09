@@ -48,13 +48,13 @@ export const signup = async (req, res) => {
             res.status(400).json({ error: "Invalid user data" })
         }
 
-        await newUser.save()
+        // await newUser.save()
 
-        newUser.password = undefined;
+        // newUser.password = undefined;
 
-        res.status(201).json(
-            newUser
-        )
+        // res.status(201).json(
+        //     newUser
+        // )
 
 
 
@@ -64,7 +64,7 @@ export const signup = async (req, res) => {
          
     } catch (error) {
         console.log("Error in signup controller", error.message)
-        res.status(500).json({ error: "Internal Server Error" })
+        res.status(500).json({ error: error })
     }
 };
 
@@ -74,8 +74,12 @@ export const login = async (req, res) => {
         const user = await User.findOne({ username })
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
 
-        if(!user || !isPasswordCorrect) {
-            return res.status(400).json({error: "Invalid username or password"})
+        if(!user) {
+            return res.status(400).json({error: "Invalid username"})
+        }
+
+        if(!isPasswordCorrect) {
+            return res.status(400).json({error: "Invalid password"})
         }
 
         generateTokenAndSetCookie(user._id, res)
@@ -88,11 +92,17 @@ export const login = async (req, res) => {
         })  
     } catch (error) {
         console.log("Error in login controller", error.message)
-        res.status(500).json({ error: "Internal Server Error" })
+        res.status(500).json({ error: error })
     }
 };
 
-export const logout =  (req, res) => {
-    res.send("logout Route");
-    console.log("Logout user")
+export const logout =  async (req, res) => {
+    try {
+        res.cookie("jwt", "", {maxAge: 0})
+        res.status(200).json({message: "Logged out successfully"})
+        
+    } catch (error) {
+        console.log("Error in logout controller", error.message)
+        res.status(500).json({ error: error})
+    }
 };
