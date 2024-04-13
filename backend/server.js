@@ -5,6 +5,7 @@ import connectToMongoDB from "./db/connectToMongodb.js";
 import messageRoutes from "./routes/message.routes.js";
 import cookieParser from "cookie-parser";
 import protectRoute from "./middleware/protectRoute.js";
+import userRoutes from "./routes/user.routes.js";
 
 const app = express();
 
@@ -19,7 +20,8 @@ app.use(cookieParser());
 // })
 
 app.use("/api/auth", authRoutes)
-app.use("/api/messages",protectRoute, messageRoutes)
+app.use("/api/messages", protectRoute, messageRoutes)
+app.use("/api/users", protectRoute, userRoutes)
 
 
 app.listen(PORT, () => {
