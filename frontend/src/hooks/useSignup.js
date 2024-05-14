@@ -11,7 +11,6 @@ const useSignup = () => {
     const success = handleInputErrors({fullName, username, password, confirmPassword, gender})
 
     if (!success) return;
-    console.log("valid data")
 
     setLoading(true)
 
