@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import GenderCheckbox from "./GenderCheckbox";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import useSignup from "../../hooks/useSignup";
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({
-    fullName: "",
+    fullname: "",
     username: "",
     password: "",
     confirmPassword: "",
@@ -41,9 +42,9 @@ const SignUp = () => {
               type="text"
               placeholder="Tanjim Safat"
               className="w-full input input-bordered h-10"
-              value={inputs.fullName}
+              value={inputs.fullname}
               onChange={(e) =>
-                setInputs({ ...inputs, fullName: e.target.value })
+                setInputs({ ...inputs, fullname: e.target.value })
               }
             />
           </div>
@@ -68,7 +69,7 @@ const SignUp = () => {
               <span className="text-base label-text">Password</span>
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
               value={inputs.password}
@@ -83,7 +84,7 @@ const SignUp = () => {
               <span className="text-base label-text">Confirm Password</span>
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               className="w-full input input-bordered h-10"
               value={inputs.confirmPassword}
