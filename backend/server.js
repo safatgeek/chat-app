@@ -1,3 +1,4 @@
+// @ts-nocheck
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
@@ -6,8 +7,7 @@ import messageRoutes from "./routes/message.routes.js";
 import cookieParser from "cookie-parser";
 import protectRoute from "./middleware/protectRoute.js";
 import userRoutes from "./routes/user.routes.js";
-
-const app = express();
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
@@ -24,7 +24,7 @@ app.use("/api/messages", protectRoute, messageRoutes)
 app.use("/api/users", protectRoute, userRoutes)
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDB()
     console.log(`Server Running on port ${PORT}`)
 
