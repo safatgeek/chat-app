@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Server } from "socket.io";
 import http from "http"
 import express  from 'express';
@@ -11,6 +12,10 @@ const io = new Server(server, {
         methods:["GET", "POST"]
     }
 }) 
+
+export const getReceiverSocketId = (receiverId) => {
+    return userSocketMap[receiverId]
+}
 
 const userSocketMap = {}
 
