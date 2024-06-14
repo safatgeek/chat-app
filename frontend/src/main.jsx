@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./jsx";
+import App from "./App.jsx";
 import "./index.css";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { SocketContextProvider } from "./context/SocketContext.jsx";
