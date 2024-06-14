@@ -3,7 +3,7 @@ import path from 'path'
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
-import connectToMongoDB from "./db/connectToMongodb.js";
+import connectToMongoDB from "./db/mongodbConnection.js";
 import messageRoutes from "./routes/message.routes.js";
 import cookieParser from "cookie-parser";
 import protectRoute from "./middleware/protectRoute.js";
